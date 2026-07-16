@@ -1,0 +1,86 @@
+/* 2Stallions — shared site styles
+   Fonts (Sora / Manrope) are linked per-page via Google Fonts <link> tags in <head>. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #F7F5F1;
+  font-family: 'Manrope', sans-serif;
+}
+
+a { color: #FF5A3C; }
+a:hover { color: #e8461e; }
+
+/* ---------- Image placeholder boxes (stand-ins for real photography) ---------- */
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #E5E1D8;
+  color: #9C9689;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* ---------- Marquee (award logos strip) ---------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  gap: 56px;
+  align-items: center;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+/* ---------- FAQ / native accordion ---------- */
+.faq-row summary { list-style: none; cursor: pointer; }
+.faq-row summary::-webkit-details-marker { display: none; }
+.faq-row summary::marker { content: ""; }
+
+/* ---------- Header ---------- */
+@keyframes hdr-fade { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+.hdr-desktop-nav { display: none; }
+.hdr-cta-desktop { display: none; }
+.hdr-mobile-toggle { display: inline-block; }
+.hdr-mobile-toggle summary { list-style: none; cursor: pointer; }
+.hdr-mobile-toggle summary::-webkit-details-marker { display: none; }
+.hdr-mobile-toggle[open] .hdr-mobile-icon-open { display: none; }
+.hdr-mobile-toggle .hdr-mobile-icon-close { display: none; }
+.hdr-mobile-toggle[open] .hdr-mobile-icon-close { display: inline; }
+
+.nav-item-wrap a:hover { color: #FF8A5C !important; }
+
+@media (min-width: 980px) {
+  .hdr-desktop-nav { display: flex !important; gap: 26px; align-items: center; }
+  .hdr-cta-desktop { display: block !important; }
+  .hdr-mobile-toggle { display: none !important; }
+}
+
+/* ---------- Footer ---------- */
+@media (max-width: 900px) {
+  .ftr-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 560px) {
+  .ftr-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ---------- Shared responsive grid overrides used across pages ---------- */
+@media (max-width: 980px) {
+  .g-2col, .g-2col-sm { grid-template-columns: 1fr !important; }
+  .g-3col, .g-4col, .g-5col { grid-template-columns: repeat(2, 1fr) !important; }
+  .g-6col { grid-template-columns: repeat(3, 1fr) !important; }
+  .hero-h1 { font-size: clamp(30px, 6vw, 52px) !important; }
+}
+@media (max-width: 600px) {
+  .g-3col, .g-4col, .g-5col, .g-6col { grid-template-columns: 1fr !important; }
+}
